@@ -1,0 +1,719 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>StudHelper</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+	background-color: rgb(25,25,25);
+	color: rgb(240, 238, 236);
+	position: relative;
+}
+@media only screen {
+	body {
+		max-width: 900px;
+		/* color: rgb(55, 53, 47); */
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+
+}
+
+.page{
+	width: 100vw;
+}
+
+.page-body {
+	padding: 0 5rem;
+}
+
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+	padding: 0 5rem;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	width: 100vw;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(47, 47, 47);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+	    vertical-align: top;
+}
+
+th {
+	/* color: rgba(55, 53, 47, 0.6); */
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	/* background: rgb(247, 246, 243); */
+	background-color: rgb(43, 61, 49);
+	/* color: black; */
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+	object-position: center center;
+	/* object-fit: cover; */
+	border-radius: 3rem;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100vw;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	width: 14rem;
+	height: 9rem;
+	font-size: 3rem;
+	margin-bottom: 1rem;
+	margin-bottom: 4rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -5rem;
+	margin-left: 5rem;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	/* color: rgba(55, 53, 47, 0.6); */
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	/* color: rgba(44, 44, 43, 1); */
+	color: rgb(240, 238, 236);
+}
+.highlight-gray {
+	color: rgba(128, 125, 120, 1);
+	fill: rgba(128, 125, 120, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(199, 121, 69, 1);
+	fill: rgba(199, 121, 69, 1);
+}
+.highlight-yellow {
+	color: rgba(175, 136, 66, 1);
+	fill: rgba(175, 136, 66, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(63, 126, 190, 1);
+	fill: rgba(63, 126, 190, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(174, 96, 133, 1);
+	fill: rgba(174, 96, 133, 1);
+}
+.highlight-red {
+	color: rgba(201, 85, 73, 1);
+	fill: rgba(201, 85, 73, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.highlight-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.highlight-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.highlight-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(232, 242, 250, 1);
+}
+.highlight-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.highlight-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.highlight-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(128, 125, 120, 1);
+	fill: rgba(128, 125, 120, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(199, 121, 69, 1);
+	fill: rgba(199, 121, 69, 1);
+}
+.block-color-yellow {
+	color: rgba(175, 136, 66, 1);
+	fill: rgba(175, 136, 66, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(63, 126, 190, 1);
+	fill: rgba(63, 126, 190, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(174, 96, 133, 1);
+	fill: rgba(174, 96, 133, 1);
+}
+.block-color-red {
+	color: rgba(201, 85, 73, 1);
+	fill: rgba(201, 85, 73, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(232, 242, 250, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 99, 174, 0.172); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="26b998e0-2859-8012-ae33-fd62bd8a6906" class="page mono"><header><img class="page-cover-image" src="https://images.unsplash.com/photo-1697577418970-95d99b5a55cf?ixlib=rb-4.1.0&amp;q=85&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb" style="object-position:center 29.04%"/><div class="page-header-icon page-header-icon-with-cover"><img class="icon" src="StudHelper%2026b998e028598012ae33fd62bd8a6906/image.png"/></div><h1 class="page-title">StudHelper</h1><p class="page-description"></p></header><div class="page-body"><p id="26b998e0-2859-81fa-b633-f252c8d597a1" class="block-color-gray"><mark class="highlight-default">У сучасному світі студенти стикаються з величезним обсягом інформації та обмеженим часом на підготовку. Тому виникає потреба у простому та зручному інструменті, який допоможе швидко підготуватися, повторити основні теми та перевірити свої знання. Ми пропонує інноваційне рішення — StudHelper, штучний інтелект для ефективної та персоналізованої підготовки до екзаменів.</mark></p><h1 id="270998e0-2859-8028-ad6a-d72af4256aa2" class=""><strong>Бізнес-план стартапу StudHelper</strong></h1><h2 id="270998e0-2859-80f4-8568-ff8e39c62416" class=""><strong>Ідея проєкту</strong></h2><p id="270998e0-2859-807e-a265-e4afa51a7217" class="">StudHelper — це телеграм-бот, в основі якого лежить штучний інтелект. Користувач може ставити боту будь-які запитання з навчальних дисциплін, отримувати пояснення простою мовою, тренуватися на тестах та створювати власні білети для повторення.</p><p id="270998e0-2859-80ff-918d-c0b52d6657cd" class="">Ключова особливість: бот не просто надає &quot;готові відповіді&quot;, а допомагає зрозуміти матеріал, пояснює складні теми крок за кроком і адаптується під рівень знань студента.</p><h2 id="270998e0-2859-8053-bde8-e66620a3cf9b" class=""><strong>Проблеми, які ми вирішуємо</strong></h2><ul id="270998e0-2859-80d1-887c-c70acdfbea2c" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">Студенти витрачають менше часу на пошук інформації.</span><div class="indented"></div></li></ul><ul id="270998e0-2859-8084-8f0c-f487b16c111e" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">Традиційні навчальні посібники з перевантаженою теорією та сухою академічною мовою стають непотрібними.</span><div class="indented"></div></li></ul><ul id="270998e0-2859-801b-8c74-f6cc7634da49" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">Репетиторські послуги стають доступними всім безкоштовно та в будь-який час.</span><div class="indented"></div></li></ul><ul id="270998e0-2859-8062-adfb-d8d99f46a91a" class="to-do-list"><li><div class="checkbox checkbox-on"></div> <span class="to-do-children-checked">Студенти отримують персоналізований план підготовки, завдяки якому вони ефективно готуються та уникають стресу.</span><div class="indented"></div></li></ul><h2 id="26b998e0-2859-80a1-b058-e18fc9f78c5d" class="">Функціонал</h2><p id="270998e0-2859-80a8-8ed6-dd8bc64b808f" class="">
+</p><p id="270998e0-2859-805f-9100-c8c8783723bf" class=""><strong>S</strong>tudHelper створює короткі конспекти з лекцій, статей і підручників, автоматично резюмує відео та виділяє ключові терміни, формули й дати. Він може будувати схеми, таблиці та карти пам’яті, а також пояснювати матеріал простими словами.</p><p id="270998e0-2859-800b-95c1-cd6995fc685d" class="">
+</p><p id="270998e0-2859-8027-af54-d9b95ccbf34e" class="">Для підготовки до іспитів сервіс формує тести минулих років або генерує нові запитання. Він пропонує адаптивні тести, банк білетів, флеш-картки для самоперевірки та розбір типових помилок, щоб студент ефективно готувався до сесії.</p><p id="270998e0-2859-805d-a873-c7b5a46a0748" class="">
+</p><p id="270998e0-2859-8063-b82e-f6c6b8075aab" class="">Платформа працює як чат-помічник і надає доступ до підручників, презентацій і конспектів. Вона легко інтегрується з університетськими системами навчання, а викладачі можуть редагувати й додавати матеріали.</p><p id="270998e0-2859-80c9-a043-f478f3e3a912" class="">
+</p><p id="270998e0-2859-802f-81d5-c4e4a8d2382f" class="">Бот також має алгоритм створення персоналізованого плану підготовки — наприклад, якщо іспит через 10 днів, помічник автоматично розподіляє теми на щоденні блоки, щоб підготовка була максимально ефективною і без стресу.</p><p id="270998e0-2859-8036-9351-e4ea5f22cce3" class="">
+</p><p id="270998e0-2859-801c-850d-e554b156484a" class="">Крім того, StudHelper доступний у вигляді Telegram-бота, підключеного до ШІ. Це дозволяє студентам швидко ставити запитання безпосередньо в месенджері та отримувати пояснення у зручному форматі — у будь-який час і з будь-якого пристрою.</p><p id="270998e0-2859-8086-b4c9-d7293538280c" class="">
+</p><h2 id="270998e0-2859-80dd-b2fb-cf017556b234" class="">Реалізація</h2><h3 id="270998e0-2859-80eb-aab0-c79b3b5fe8fd" class="">1. Технічна частина</h3><ol type="1" id="270998e0-2859-8080-a7e1-cd991061d9d4" class="numbered-list" start="1"><li>Telegram-бот<ul id="270998e0-2859-8016-b7e4-e3081a43f01d" class="bulleted-list"><li style="list-style-type:circle">Розробка з використанням офіційного API Telegram.</li></ul><ul id="270998e0-2859-800f-a482-eda702cb1198" class="bulleted-list"><li style="list-style-type:disc">Інтуїтивно зрозуміле меню та прості команди для взаємодії.</li></ul><ul id="270998e0-2859-808d-80a7-c6fc3f0a1785" class="bulleted-list"><li style="list-style-type:disc">Перевага: студенти вже активно користуються Telegram, тож не потрібно встановлювати додаткові програми.</li></ul></li></ol><ol type="1" id="270998e0-2859-8025-8f6e-f24445da74ed" class="numbered-list" start="2"><li>Сервер та база даних</li></ol><p id="270998e0-2859-80b5-aae8-f2254da5b55e" class="">Потужний сервер для швидкої обробки запитів і надійна база даних (PostgreSQL або Firebase) для ефективного зберігання результатів тестів, історії взаємодій та індивідуальних планів підготовки.</p><h3 id="270998e0-2859-80a2-8c44-dbbc17e2adb6" class="">2. Команда</h3><ul id="270998e0-2859-80fe-9631-deafc58542e8" class="bulleted-list"><li style="list-style-type:square">Backend-розробник — спеціаліст з Python/Node.js для інтеграції API Telegram і штучного інтелекту.</li></ul><ul id="270998e0-2859-80f7-8b37-f87987c0f4fb" class="bulleted-list"><li style="list-style-type:disc">AI-фахівець — налаштовує моделі під освітній контент.</li></ul><ul id="270998e0-2859-80b0-aceb-ffd6e7d3934c" class="bulleted-list"><li style="list-style-type:disc">UX-дизайнер — продумує логіку діалогу та зручність взаємодії.</li></ul><ul id="270998e0-2859-808e-a901-c5a688456a97" class="bulleted-list"><li style="list-style-type:disc">Маркетолог/SMM — забезпечує просування серед студентської аудиторії.</li></ul><p id="270998e0-2859-8051-8ae0-ea04c66caada" class="">p.s. на старті мінімум можна обійтися 2 людьми: розробник + маркетолог.</p><h3 id="270998e0-2859-800c-857c-e049cc214eba" class="">3. Фінансова сторона</h3><p id="270998e0-2859-8016-b39c-cf81e949450d" class="">Стартові витрати включають сервер і хостинг (~20–50 $/міс.), використання API штучного інтелекту (~100–200 $/міс. залежно від кількості користувачів) та рекламу в соціальних мережах (від 300 $ на перші місяці просування).</p><p id="270998e0-2859-802d-9eaf-ea57229ba598" class="">Щодо моделі прибутку, ми пропонуємо безкоштовну базову версію з відповідями на питання та простими тестами. Преміум-підписка вартістю від 100 грн/міс. надаватиме розширені можливості: персональний план підготовки, збереження конспектів та складніші тести. Також плануємо B2B-напрямок — підключення для університетів і навчальних курсів.</p><h3 id="270998e0-2859-80a4-8dbb-e244319aa98f" class="">4. Переваги формату Telegram-бота</h3><p id="270998e0-2859-805e-9a4b-e838e85ac40a" class="">Використання Telegram-бота має свої переваги: не потрібно розробляти та підтримувати окремі додатки для різних операційних систем, що значно економить ресурси. Також це дозволяє швидко запустити мінімально життєздатний продукт (MVP) протягом 1-2 місяців. Більшість студентів вже активно користуються Telegram, тому немає потреби переконувати їх встановлювати додаткове програмне забезпечення. Крім того, така платформа легко масштабується — в майбутньому можна розширити функціонал, додавши веб-версію.</p><h2 id="270998e0-2859-804b-aebd-ef66b668b0b7" class=""><strong>Прибутковість StudHelper</strong></h2><h3 id="270998e0-2859-80bf-8765-fc7013ab7405" class=""><strong>1. Базова модель монетизації</strong></h3><p id="270998e0-2859-8030-9af8-c53c2f718963" class="">Безкоштовний доступ: прості відповіді від бота.</p><p id="270998e0-2859-8057-b822-d5b2e2cd8488" class="">Преміум-підписка: персональний план підготовки, збереження конспектів у PDF, складніші тести й аналіз прогресу. Ціна: ~100 грн/міс або 800–900 грн/рік.</p><h3 id="270998e0-2859-803f-97c1-d3b4c133f37e" class=""><strong>2. Прогноз для України (приклад)</strong></h3><p id="270998e0-2859-804f-a1d5-f1620608d581" class="">Студентів першокурсників станом на 2025 рік в Україні ~200 тис. Навіть якщо ми зацікавимо лише 10% від цієї кількості, це дасть нам 20 000 користувачів. Припускаємо, що з них хоча б 30% перейдуть на платну підписку, що становитиме ~700 преміум-користувачів.</p><p id="270998e0-2859-8028-888b-dd0c2a9dd63d" class="">Розрахунок:</p><p id="270998e0-2859-8026-a938-ee3adc93c623" class="">700 × 100 грн/міс = 70 000 грн/міс (~1 700 $).</p><p id="270998e0-2859-80e5-ac03-ea384b4c74d5" class="">За рік → майже 840 000 тис грн (~20 000 $).</p><h3 id="270998e0-2859-8039-b0b2-c01348c64af2" class=""><strong>3. Мінімальний сценарій (на старті)</strong></h3><p id="270998e0-2859-8061-9a52-ff3ff2ddae49" class="">1 000 користувачів у перші місяці, з них 100 преміумів × 100 грн = 10 000 грн/міс (~250 $). Цього вистачить, щоб покрити витрати на сервери, API і частину рекламних витрат.</p><h2 id="270998e0-2859-8024-a940-e51bb6e82f14" class="">Схожі стартапи та порівняння</h2><h3 id="270998e0-2859-80ca-b863-cebc3456ed0b" class=""><strong>Подібні проєкти / конкуренти</strong></h3><h3 id="270998e0-2859-80b0-b2cd-cf242f8d2f85" class=""><mark class="highlight-yellow">Educato AI</mark></h3><p id="270998e0-2859-8098-8467-e59c603e2637" class="">Платформа, що будує рішення для підготовки до різних іспитів у світі з використанням ШІ. Створює контент, симуляції, адаптується під користувача.</p><h3 id="270998e0-2859-80e9-9ba4-ec67523922b8" class=""><mark class="highlight-blue">Alice.Tech</mark></h3><p id="270998e0-2859-80f4-b96c-d2b260103d3d" class="">Стартап з Копенгагена, який використовує ШІ, щоб з генеричного навчального матеріалу робити персоналізовані менеджменти навчання, флеш-карти, питання, тести.</p><h3 id="270998e0-2859-80f0-a09d-cbf406adbe14" class=""><mark class="highlight-purple">QANDA</mark></h3><p id="270998e0-2859-8020-b365-d6b912c35cf9" class="">Платформа з Південної Кореї, яка дозволяє сканувати задачі, отримувати рішення крок за кроком, має багато користувачів. Це більше сфокусовано на допомозі з домашньою роботою / задачами, але частково використовується для підготовки до іспитів.</p><h3 id="270998e0-2859-8035-a81e-cf1c138b0f43" class=""><mark class="highlight-teal"><mark class="highlight-teal">Embibe</mark></mark></h3><p id="270998e0-2859-80dc-8c1d-fa01c91af8fd" class="">Платформи, які створюють персоналізовані плани, адаптуються під слабкі й сильні сторони студента, дають відео, інтерактивні уроки, практичні тести.</p><p id="270998e0-2859-8042-bd6d-c341dbb9812e" class="">
+</p><h3 id="270998e0-2859-809f-9623-cae4f857a457" class=""><strong>Чим наш потенційно може бути кращим — конкурентні переваги</strong></h3><p id="270998e0-2859-80fb-a9ed-cf07532854b8" class="">Щоб відрізнятися і мати сильні переваги, варто брати до уваги такі аспекти:</p><table id="270998e0-2859-8007-a18c-f2a7be23e30f" class="simple-table"><thead class="simple-table-header"><tr id="270998e0-2859-80a2-b005-cf8e7cd53f81"><th id="FUu]" class="simple-table-header-color simple-table-header" style="width:228.65625px">Параметр</th><th id="RVy{" class="simple-table-header-color simple-table-header">Що часто мають конкуренти</th><th id="fYR&gt;" class="simple-table-header-color simple-table-header">Де можна перевершити</th></tr></thead><tbody><tr id="270998e0-2859-80de-b3a8-d75aec031e2e"><td id="FUu]" class="block-color-default_background" style="width:228.65625px"><mark class="highlight-default">Інтерактивність та зворотний зв’язок</mark></td><td id="RVy{" class="">Багато платформ дають тести, відповіді, можливо деякий аналіз, але рідко — глибокий розбір, пояснення, адаптація помилок.</td><td id="fYR&gt;" class="">Створити систему, яка не просто говорить: «це неправильно», а показує чому, дає альтернативні шляхи, адаптивні підказки, можливо, відео інструкції, чи інтерактивні моделі.</td></tr><tr id="270998e0-2859-8037-aa7f-e0978a72f202"><td id="FUu]" class="block-color-default_background" style="width:228.65625px">Аналітика прогресу + прогнозування</td><td id="RVy{" class="">Деякі конкуренти мають лідерборди, базовий трекінг (скільки тестів пройшов / які відповіді дав).</td><td id="fYR&gt;" class="">Використовувати аналітику для прогнозування — наприклад, показати, яку оцінку студент може отримати, якщо буде працювати за даним планом, чи що саме потрібно “прокачати”, щоб перейти з поточної оцінки до бажаної; візуалізація слабких зон, пропозиції поліпшень.</td></tr><tr id="270998e0-2859-8026-b68f-ccfdcd1e2e54"><td id="FUu]" class="block-color-default_background" style="width:228.65625px">Якість контенту та перевірка</td><td id="RVy{" class="">ШІ може створювати помилки, неточності; конкуренти часто мають людський “інспектор” чи викладач, що перевіряє або верифікує.</td><td id="fYR&gt;" class="">База даних стартапу створена на основі тестів з екзаменів, отже він буде набагато точним і надійним ніж інші сайти</td></tr><tr id="270998e0-2859-8099-8642-cd581181e7fc"><td id="FUu]" class="block-color-default_background" style="width:228.65625px">Гнучкість формату навчання / доступність</td><td id="RVy{" class="block-color-default_background">Часто – відео, тести, картинки. Може бути дорогим доступ або іноді навіть немає інтернету.</td><td id="fYR&gt;" class="block-color-default_background">Мати можливість навчання офлайн/онлайн режими, різні пакети (від базового до преміум), щоб зменшити ціну або підвищити мотивованість.</td></tr></tbody></table><h2 id="270998e0-2859-8020-bb23-d5835d4e87d2" class="">Масштабування StudHelper</h2><p id="270998e0-2859-80df-a304-e1c6730540d3" class="">На початковому етапі наш ШІ буде зосереджений на одному предметі певного університету.</p><p id="270998e0-2859-8096-ad34-df406bc553fe" class="">Згодом ми розширимо базу матеріалів іншими предметами, доки не охопимо весь університет.</p><p id="270998e0-2859-80ea-a838-d4d9b52ccea0" class="">Далі заплановане масштабування на інші університети, при цьому кожен заклад матиме власну базу даних, що забезпечить унікальний та точний навчальний контент.</p><p id="270998e0-2859-8028-a006-f33733a55ff6" class="">Також на StudHelper поступово будуть додаватися нові розширення, які зроблять платформу ще зручнішою та функціональнішою:</p><ul id="270998e0-2859-803f-9388-f5ed5cd708fd" class="bulleted-list"><li style="list-style-type:disc">Локальні бази даних для кожного університету з можливістю централізованого управління.</li></ul><ul id="270998e0-2859-8037-a06d-ebad207bb410" class="bulleted-list"><li style="list-style-type:disc">Аналітика навчального процесу: відстеження відвідуваності, результатів та прогресу студентів.</li></ul><ul id="270998e0-2859-80ab-9679-f2fd0179f9e3" class="bulleted-list"><li style="list-style-type:disc">Підтримка кількох мов — українська, англійська та інші для студентів з різних країн.</li></ul><h2 id="26b998e0-2859-81f7-ba3e-f46ed55f6814" class="">Команда</h2><hr id="26b998e0-2859-8115-9d52-d077739909d5"/><p id="26b998e0-2859-819c-9a4d-e7677bbca982" class="block-color-gray">Аріх Ілля, Чайковський Петро, Пилипенко Богдан</p><p id="270998e0-2859-806d-96d9-e220baa44e85" class="">
+</p><p id="26b998e0-2859-811e-9a2c-fcd3e6ba74f8" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
